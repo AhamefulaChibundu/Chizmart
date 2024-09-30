@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 from .models import Product
 
 class UserRegistrationForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
-
+    password = forms.CharField(widget=forms.PasswordInput),
+    
     class Meta:
         model = User
         fields = ['username', 'email', 'password']

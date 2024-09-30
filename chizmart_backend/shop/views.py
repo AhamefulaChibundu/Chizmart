@@ -50,7 +50,7 @@ def become_seller(request):
             return redirect('product_list')  # Redirect after successful registration
     else:
         form = SellerRegistrationForm()
-    return render(request, 'shop/become_seller.html', {'form': form})
+    return render(request, 'become_seller.html', {'form': form})
 
 # View for adding products
 @login_required

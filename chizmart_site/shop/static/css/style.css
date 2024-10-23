@@ -205,3 +205,24 @@ form input[type="email"] {
         flex: 1 1 100%; 
     }
 }
+
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-warning {
+    background-color: orange; /* Adjust to your desired color */
+}
+
+.btn-danger {
+    background-color: red; /* Adjust to your desired color */
+}
+
+.btn:hover {
+    opacity: 0.8; /* Add a hover effect */
+}

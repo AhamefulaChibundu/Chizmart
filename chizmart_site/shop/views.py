@@ -67,3 +67,34 @@ def add_product(request):
     else:
         form = ProductForm()
     return render(request, 'shop/add_product.html', {'form': form})
+
+from django.shortcuts import get_object_or_404
+from django.contrib import messages
+
+# View for editing products
+@login_required
+def edit_product(request, product_id):
+    product = get_object_or_404(Product, id=product_id, seller=request.user.seller)
+    
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Product updated successfully!')
+            return redirect('product_list')
+    else:
+        form = ProductForm(instance=product)
+
+    return render(request, 'shop/edit_product.html', {'form': form, 'product': product})
+
+# View for deleting products
+@login_required
+def delete_product(request, product_id):
+    product = get_object_or_404(Product, id=product_id, seller=request.user.seller)
+    
+    if request.method == 'POST':
+        product.delete()
+        messages.success(request, 'Product deleted successfully!')
+        return redirect('product_list')
+
+    return render(request, 'shop/delete_product.html', {'product': product})
